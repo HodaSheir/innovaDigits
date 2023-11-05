@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('mobile')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->enum('user_type', UserTypes::getValues())->default('admin');
+            $table->enum('user_type', UserTypes::getValues())->default('vendor');
             $table->rememberToken();
             $table->timestamps();
         });

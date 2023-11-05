@@ -17,14 +17,16 @@ class ProductSeeder extends Seeder
     {
         $vendorUsers = Vendor::take(10)->get();
         foreach ($vendorUsers as $vendorUser) {
-            Product::factory()->create([
-                'vendor_id' => $vendorUser->id,
-                'name' => fake()->word(),
-                'description' => 'This is a sample product.',
-                'price' => fake()->numberBetween(20,120),
-                'quantity' => 50,
-                'expiration_date' => now()->addMonths(12),
-            ]);
+            for ($i = 0; $i < 5; $i++) {
+                Product::factory()->create([
+                    'vendor_id' => $vendorUser->id,
+                    'name' => fake()->word(),
+                    'description' => 'This is a sample product.',
+                    'price' => fake()->numberBetween(20,120),
+                    'quantity' => 50,
+                    'expiration_date' => now()->addMonths(12),
+                ]);
+            }
         }
        
     }
