@@ -9,16 +9,16 @@ class OrderRequest extends FormRequest
    
     public function rules(): array
     {
-        return [
+        $products = $this->input('products'); 
+        $rules = [
             'shipping_address' => 'required|string',
             'billing_address' => 'required|string',
             'payment_method' => 'required|string',
-
-            // Validate products as an array
-            'products' => 'required|array',
-            'products.*.product_id' => 'required|exists:products,id',
-            'products.*.quantity' => 'required|integer|min:1',
-
         ];
+        foreach ($products as $key => $product) {
+            $rules["products.{$key}.product_id"] = 'required|exists:products,id';
+            $rules["products.{$key}.quantity"] = 'required|numeric|min:1';
+        }
+        return $rules;
     }
 }
