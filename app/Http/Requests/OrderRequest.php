@@ -12,9 +12,9 @@ class OrderRequest extends FormRequest
         return [
             'shipping_address' => 'required|string',
             'billing_address' => 'required|string',
-            'total_amount' => 'required',
-            'customer_id' => 'required',
-            'order_number' => 'required',
+            'total_amount' => 'required', //only for test feature
+            'customer_id' => 'required', //only for test feature
+            'order_number' => 'required', //only for test feature
             'payment_method' => 'required|string',
             'products' => 'required|array',
             'products.*.product_id' => 'required|exists:products,id',
