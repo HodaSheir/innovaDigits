@@ -38,6 +38,9 @@ class CheckProductExpiry extends Command
             $vendor = Vendor::findOrFail($vendor_id);
             $vendor_mail = $vendor->user->email;
             Mail::to($vendor_mail)->send(new ProductExpiryNotification($product));
+
+            // or queue it in this way 
+            //  Mail::to($vendor_mail)->queue(new ProductExpiryNotification($product));
         }
 
         $this->info('Product expiry check completed.');
