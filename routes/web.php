@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\orderController;
+use App\Http\Controllers\productController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/products/{id}', [productController::class, 'show']);
+Route::resource('orders',orderController::class)->only(['index', 'store']);;
